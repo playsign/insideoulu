@@ -10,27 +10,8 @@
     <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqd2OT4C-fKAhYJxuOZSbt0DGdkjgZM0c&sensor=true">
     </script>
-    <script type="text/javascript">
-      function initialize() {
-        var myStyles = [{
-          featureType: "poi",
-          elementType: "labels",
-          stylers: [
-              { visibility: "off" }
-          ]
-        }];
-        var mapOptions = {
-          center: new google.maps.LatLng(65.01424953761347,
-25.47029972076416), //NuKu
-          zoom: 15,
-          disableDefaultUI: false,
-          styles: myStyles
-        };
-        var map = new google.maps.Map(document.getElementById("map-canvas"),
-            mapOptions);
-      }
-      google.maps.event.addDomListener(window, 'load', initialize);
-    </script>
+    <script type="text/javascript" src="data.js"></script>
+    <script type="text/javascript" src="map.js"></script>
 </head>
 
 <body>
