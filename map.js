@@ -21,8 +21,18 @@ function initialize() {
                                   mapOptions);
 
     infowindow = new google.maps.InfoWindow({
-      content: ""
+        content: "",
+        maxWidth: 200
     });
+
+    var circleSymbol = {
+        path: google.maps.SymbolPath.CIRCLE,
+        fillColor: 'yellow',
+        strokeColor: 'gold',
+        fillOpacity: 0.8,
+        scale: 10,
+        strokeWeight: 1
+    };
 
     for (var num in places) {
         var info = places[num];
@@ -35,6 +45,10 @@ function initialize() {
         var marker = new google.maps.Marker({
             position: latlng,
             map: map,
+            /*icon: {
+                path: circleSymbol,
+            },*/
+            icon: circleSymbol,
             title: num + ' - ' + text
         });
         
