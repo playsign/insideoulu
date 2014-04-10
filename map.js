@@ -41,11 +41,19 @@ function initialize() {
         fillOpacity: 1.0,
     };
 */
+    for (var i=0; i < allplaces.length; ++i) {
+        markersForPlaces(map, circleSymbol, infowindow, allplaces[i]);
+    }
+    
+    console.log("init done");
+}
 
+function markersForPlaces(map, symbol, infowindow, places) {
     for (var num in places) {
         var info = places[num];
         console.log(num, info);
-        var geopos = info[0];
+        //var geopos = info[0];
+        var geopos = [65.01424953761347, 25.47029972076416]
         var text = info[1];
         var latlng = new google.maps.LatLng(geopos[0],
                                             geopos[1]);
@@ -66,16 +74,14 @@ function initialize() {
             labelAnchor: new google.maps.Point(2.5, 7),
             labelClass: "labels", // the CSS class for the label
             labelStyle: {opacity: 0.75},
-            icon : circleSymbol
+            icon : symbol
         });
         
-        addHandler(map, marker, text);
+        addHandler(map, marker, infowindow, text);
     }
-
-    console.log("init done");
 }
 
-function addHandler(map, marker, text) {
+function addHandler(map, marker, infowindow, text) {
     google.maps.event.addListener(marker, 'click', function() {
         infowindow.content = text;
         infowindow.open(map, marker);
