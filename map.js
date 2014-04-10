@@ -63,7 +63,7 @@ function initialize() {
             raiseOnDrag: false,
             map: map,
             labelContent: num,
-            labelAnchor: new google.maps.Point(2, 7),
+            labelAnchor: new google.maps.Point(2.5, 7),
             labelClass: "labels", // the CSS class for the label
             labelStyle: {opacity: 0.75},
             icon : circleSymbol
