@@ -44,6 +44,7 @@ function initialize() {
     for (var i=0; i < allplaces.length; ++i) {
         markersForPlaces(map, circleSymbol, infowindow, allplaces[i]);
     }
+    //markersForPlaces(map, circleSymbol, infowindow, bars_nightclubs);
     
     console.log("init done");
 }
@@ -53,8 +54,13 @@ function markersForPlaces(map, symbol, infowindow, places) {
         var info = places[num];
         console.log(num, info);
         //var geopos = info[0];
-        var geopos = [65.01424953761347, 25.47029972076416]
-        var text = info[1];
+        //var geopos = [65.01424953761347, 25.47029972076416]
+        var name = info[0];
+        var addr = info[1];
+        var desc = info[2];
+        var text = name + " " + desc;
+
+        var geopos = addr2geoloc[addr];
         var latlng = new google.maps.LatLng(geopos[0],
                                             geopos[1]);
 
