@@ -1,3 +1,5 @@
+# coding=utf-8
+
 places = {
     "1": [[65.01424953761347, 25.47029972076416], "Test 1 aslkfj laöskjdf ölaksjdf ölkasjd fölkajs fölkasjdf ölakdjsf ölkajsd ölaksjd fölaskdjf ölaskdjföalskjf asöldfkj aöslkfj asödlkfj asökdfj aösldkfj ösaldkfj asödlfkj saödlkfj asdöfl jk"],
     "2": [[65.01370000000000, 25.47515000000000], "Test 2"],
@@ -55,7 +57,7 @@ boutiques = {
 }
 
 
-//Restaurants & Cafés
+#Restaurants & Cafés
 restaurants_cafes = {
     "13": ["Café Kruda",
            "Pakkahuoneenkatu 5",
@@ -94,7 +96,7 @@ restaurants_cafes = {
            "Open 30.4.-15.9. every day 11-21 / www.tahtitorninkahvila.fi / Coffee and scenery since 1912! Dog-friendly café. Finland’s best coffee, variety of drinks, huge selection of ice-cream, fair trade and organic products and local pastries. Also featuring a summer book store and monthly changing exhibitions."]
 }
 
-//Bars & Nightclubs
+#Bars & Nightclubs
 bars_nightclubs = {
     "22": ["45 Special",
            "Saaristonkatu 12",
@@ -128,3 +130,9 @@ galleries = {
 }
 
 allplaces = [boutiques, restaurants_cafes, bars_nightclubs, galleries];
+
+name2pos = {
+    "45 Special": [65.01424953761347, 25.47029972076416], 
+    "Never Grow Old": [65.01370000000000, 25.47515000000000],
+    "Snooker Time": [65.01300000000000, 25.47000000000000]
+}
