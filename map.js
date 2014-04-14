@@ -1,6 +1,7 @@
 var map, infowindow; //to expose for console debugging / devving
 
 var markercols = ['pink', 'lightblue', 'orange', 'lightgreen'];
+var markers = []; //so that menu can open a marker
 
 function initialize() {
     var myStyles = [{
@@ -20,7 +21,7 @@ function initialize() {
     };
     
     map = new google.maps.Map(document.getElementById("map-canvas"),
-                                  mapOptions);
+                              mapOptions);
 
     infowindow = new google.maps.InfoWindow({
         content: "",
@@ -38,6 +39,7 @@ function initialize() {
             strokeWeight: 1
         };
         markersForPlaces(map, circleSymbol, infowindow, allplaces[i]);
+        populateMenus(i+1, allplaces[i]);
     }
     
     console.log("init done");
@@ -66,13 +68,6 @@ function markersForPlaces(map, symbol, infowindow, places) {
         var latlng = new google.maps.LatLng(geopos[0],
                                             geopos[1]);
 
-        /*var marker = new google.maps.Marker({
-            position: latlng,
-            map: map,
-            icon: circleSymbol,
-            title: num + ' - ' + text
-        });*/
-
         var anchorOffset = {
             1: [2.6, 7],
             2: [5.7, 7]
@@ -93,6 +88,7 @@ function markersForPlaces(map, symbol, infowindow, places) {
         });
         
         addHandler(map, marker, infowindow, text);
+        markers[num] = marker;
     }
 }
 
@@ -102,6 +98,27 @@ function addHandler(map, marker, infowindow, text) {
         infowindow.open(map, marker);
         console.log("onclick", marker.title);
     });    
+}
+
+function populateMenus(idx, places) {
+    var menu = $('#menu' + idx);
+    //var list = $('<ul>')
+    for (var num in places) {
+        var info = places[num];
+        var name = info[0];
+        $('<li>').html('<a href="#" id="' + num + '">' + name + '</a>').appendTo(menu);
+        //list.appendTo(menu);
+    }
+
+    /* Next part of code handles hovering effect and submenu appearing */
+    $('.nav li').hover(
+      function () { //appearing on hover
+        $('ul', this).fadeIn();
+      },
+      function () { //disappearing on hover
+        $('ul', this).fadeOut();
+      }
+    );
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
@@ -119,5 +136,10 @@ $(document).ready(
         $('ul', this).fadeOut();
       }
     );
+
+    $('#navigation').on('click', function() {
+        var t = event.target.id;
+        google.maps.event.trigger(markers[t], 'click');
+    });
   }
 );
