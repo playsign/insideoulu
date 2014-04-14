@@ -71,13 +71,20 @@ function markersForPlaces(map, symbol, infowindow, places) {
             title: num + ' - ' + text
         });*/
 
+        var anchorOffset = {
+            1: [2.6, 7],
+            2: [5.7, 7]
+        }[num.length];
+        var anchor = new google.maps.Point(anchorOffset[0], 
+                                           anchorOffset[1]);
+
         var marker = new MarkerWithLabel({
             position: latlng,
             draggable: false,
             raiseOnDrag: false,
             map: map,
             labelContent: num,
-            labelAnchor: new google.maps.Point(2.5, 7),
+            labelAnchor: anchor,
             labelClass: "labels", // the CSS class for the label
             labelStyle: {opacity: 0.75},
             icon : symbol

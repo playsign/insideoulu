@@ -6,15 +6,15 @@ places = {
 
 boutiques = {
     "1": ["Non Boutique",
-          "Pakkahuoneenkatu 5",
-          "Mon-Fri 11-18, Sat 11-15 / www.nonboutique.fi / High-quality finnish design. Clothes and accessories from small series to unique pieces and recycled design."],
+          "Pakkahuoneenkatu 5a",
+          "Mon-Fri 11-18, Sat 11-15 / www.nonboutique.fi / High-quality Finnish design. Clothes and accessories from small series to unique pieces and recycled design."],
 
     "2": ["KIKS",
-          "Pakkahuoneenkatu 5",
+          "Pakkahuoneenkatu 5b",
           "Mon-Fri 11-18, Sat 11-15 / www.kiks.fi, www.facebook.com/kiks.fi / Unique, upcycled clothes and accessories respecting the human, nature and good kiks! Also custom-design."],
 
     "3": ["Kofeiinikomppania",
-          "Pakkahuoneenkatu 5",
+          "Pakkahuoneenkatu 5c",
           "Mon-Fri 11-17, Sat 11-16 / www.kofeiinikomppania.fi / Lovely tea and coffee shop with over a hundred excellent quality loose leaf teas and specialities, definitely the freshest coffeebeans in town from small roasteries and some tea & coffee accessories."],
 
     "4": ["Kuudes Maku",
@@ -58,7 +58,7 @@ boutiques = {
 //Restaurants & Cafés
 restaurants_cafes = {
     "13": ["Café Kruda",
-           "Pakkahuoneenkatu 5",
+           "Pakkahuoneenkatu 5d",
            "Mon-Fri 11-17, Sat 11-16 / www.kruda.fi / A cosy café where every cup of coffee is prepared with love. Delicious raw cakes also available!"],
 
     "14": ["Moon Café / Juustokuu",
