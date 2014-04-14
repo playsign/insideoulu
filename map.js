@@ -58,7 +58,15 @@ function markersForPlaces(map, symbol, infowindow, places) {
         var name = info[0];
         var addr = info[1];
         var desc = info[2];
-        var text = name + " " + desc;
+        var text = "<b>" + name + "</b>" + " " + desc;
+        
+        var linkdata = info[3];
+        var links = linkdata.split(',');
+        text += "<br/>";
+        for (var i=0; i < links.length; ++i) {
+            var url = links[i].trim();         
+            text += '<a href="http://' + url + '">' + url + '</a> ';
+        }
 
         var geopos = addr2geoloc[addr];
         var latlng = new google.maps.LatLng(geopos[0],
