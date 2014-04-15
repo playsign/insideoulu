@@ -1,6 +1,6 @@
 var map, infowindow; //to expose for console debugging / devving
 
-var markercols = ['pink', 'lightblue', 'orange', 'lightgreen'];
+var markercols = ['fb177f', 'lightblue', 'ec7c22', '#21c89e'];
 var markers = []; //so that menu can open a marker
 
 function initialize() {
@@ -139,7 +139,12 @@ $(document).ready(
 
     $('#navigation').on('click', function() {
         var t = event.target.id;
-        google.maps.event.trigger(markers[t], 'click');
+        var m = markers[t];
+        if (m) {
+            google.maps.event.trigger(markers[t], 'click');
+            var submenu = event.target.parentElement.parentElement;
+            $(submenu).fadeOut();
+        }
     });
   }
 );

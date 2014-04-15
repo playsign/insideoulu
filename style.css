@@ -46,9 +46,26 @@ body {
     border-top: 1px solid #069;
 }
 
-.nav li a:hover {
+/*.nav li a:hover {
     color: #069;
+}*/
+
+.nav .boutiques {
+    color: #fb177f;
 }
+
+.nav .restaurants {
+    color: #1450fb;
+}
+
+.nav .bars {
+    color: #ec7c22;
+}
+
+.nav .galleries {
+    color: #21c89e;
+}
+
 
 /*=== submenu ===*/
 
