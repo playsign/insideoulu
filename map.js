@@ -71,15 +71,8 @@ function markersForPlaces(map, symbol, infowindow, places) {
         //var geopos = [65.01424953761347, 25.47029972076416]
         var name = info[0];
         var addr = info[1];
-        var desc = info[2];
-        
+        var desc = info[2];        
         var linkdata = info[3];
-        var links = linkdata.split(',');
-        text += "<br/>";
-        for (var i=0; i < links.length; ++i) {
-            var url = links[i].trim();         
-            text += '<a href="http://' + url + '">' + url + '</a> ';
-        }
 
         var geopos = addr2geoloc[addr];
         var latlng = new google.maps.LatLng(geopos[0],
@@ -112,6 +105,12 @@ function markersForPlaces(map, symbol, infowindow, places) {
             addr = addr.substring(0, 18);
         }
         var text = "<strong>" + name + "</strong> <em>" + addr + "</em> / " + desc;
+        var links = linkdata.split(',');
+        text += "<br/>";
+        for (var i=0; i < links.length; ++i) {
+            var url = links[i].trim();         
+            text += '<a href="http://' + url + '">' + url + '</a> ';
+        }
         
         addHandler(map, marker, infowindow, text);
         markers[num] = marker;
