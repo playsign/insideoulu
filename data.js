@@ -24,7 +24,7 @@ boutiques = {
           "Mon-Fri 11-17, Sat 11-15 / An exciting gift shop full of life. Visit us, surprises await!",
          "www.kuukorento.fi"],
 
-    "6": ["Kultasepp\u00e4 R\u00e4s\u00e4nen",
+    "6": ["Kultaseppä Räsänen",
           "Isokatu 41",
           "Mon-Fri 9:30-13 and 14-17:30 / Handmade gemstone jewellery.",
           "www.kultasepparasanen.fi"],
@@ -49,7 +49,7 @@ boutiques = {
            "Mon-Fri 10-18, Sat 9-15 / Delicatessen with local and organic goods. Meat and meat products from the local Viskaali farm. Located close to the Art museum and Tietomaa.",
            "www.viskaalin.fi"],
 
-    "11": ["Kultasepp\u00e4 Matti K\u00e4rs\u00e4m\u00e4",
+    "11": ["Kultaseppä Matti Kärsämä",
            "Pikisaarentie 8",
            "Mon-Fri 10-17, Sat 10-14 (Sun 12-16) / Handmade gold and silver jewellery.",
            "www.kultasepanpaja.net"],
@@ -61,16 +61,16 @@ boutiques = {
 }
 
 
-//Restaurants & Caf\u00e9s
+//Restaurants & Cafés
 restaurants_cafes = {
-    "13": ["Caf\u00e9 Kruda",
+    "13": ["Café Kruda",
            "Pakkahuoneenkatu 5d",
-           "Mon-Fri 11-17, Sat 11-16 / A cosy caf\u00e9 where every cup of coffee is prepared with love. Delicious raw cakes also available!",
+           "Mon-Fri 11-17, Sat 11-16 / A cosy café where every cup of coffee is prepared with love. Delicious raw cakes also available!",
           "www.kruda.fi"],
 
-    "14": ["Moon Caf\u00e9 / Juustokuu",
+    "14": ["Moon Café / Juustokuu",
            "Oulu Market Hall",
-           "Mon-Thu 8-17, Fri 8-18, Sat 9-15 / Moon Caf\u00e9: High-quality coffee and variety of chocolates and other sweets treats. Juustokuu: The best cheese shop in Oulu.",
+           "Mon-Thu 8-17, Fri 8-18, Sat 9-15 / Moon Café: High-quality coffee and variety of chocolates and other sweets treats. Juustokuu: The best cheese shop in Oulu.",
           "www.juustokuu.fi"],
 
     "15": ["Cafe Rooster",
@@ -90,7 +90,7 @@ restaurants_cafes = {
 
     "18": ["Kakkukahvila Mira PoPpins",
            "Hallituskatu 21",
-           "Mon-Fri 7:30-17, Sat  8:30-15 / In our homely caf\u00e9 we serve fabulous cakes, fresh-roasted Kaffa Roastery coffee, nutritious breakfast and a yummy lunch – always with a smile!",
+           "Mon-Fri 7:30-17, Sat  8:30-15 / In our homely café we serve fabulous cakes, fresh-roasted Kaffa Roastery coffee, nutritious breakfast and a yummy lunch – always with a smile!",
           "www.kakkukahvilamirapoppins.com"],
 
     "19": ["Ravintola Rauhala",
@@ -103,9 +103,9 @@ restaurants_cafes = {
            "Mon-Tue 10:30-15:00, Wed 10:30-0:00, Thu 10:30-22:00, Fri 10:30-0:00, Sat 12:00-0:00, Sun 12:00-16:00* Please check summertime opening hours and exceptions at www.tuba.fi / Tasty home-made food from the lunch buffet, fresh salads and delicious burgers. Wednesday jams, live gigs and a praiseworthy brunch on weekends! We also favor ecologically and organically grown products.",
           "www.tuba.fi"],
 
-    "21": ["T\u00e4htitornin Kahvila",
+    "21": ["Tähtitornin Kahvila",
            "Linnansaari 1",
-           "Open 30.4.-15.9. every day 11-21 / Coffee and scenery since 1912! Dog-friendly caf\u00e9. Finland’s best coffee, variety of drinks, huge selection of ice-cream, fair trade and organic products and local pastries. Also featuring a summer book store and monthly changing exhibitions.",
+           "Open 30.4.-15.9. every day 11-21 / Coffee and scenery since 1912! Dog-friendly café. Finland’s best coffee, variety of drinks, huge selection of ice-cream, fair trade and organic products and local pastries. Also featuring a summer book store and monthly changing exhibitions.",
           "www.tahtitorninkahvila.fi"]
 }
 
@@ -144,7 +144,7 @@ galleries = {
           "www.photonorth.fi, www.ouluarthall.fi"],
 
     "28": ["Kulttuuribingo", 
-           "M\u00e4kelininkatu 29",
+           "Mäkelininkatu 29",
            "Mon-Fri 12-18 / Kulttuuribingo is a gallery, venue, workshops and a space for artists to bloom! Free social space that’s changing forever. Yes!",
           "www.kulttuuribingo.fi"]
 }

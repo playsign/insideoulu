@@ -27,10 +27,6 @@ body {
     width: 70px;
 }
 
-.finaviabox {
-    background-color: black;
-}
-
 .finavia {
     height: 36px;
     background-color: #f3f4f4;
@@ -122,7 +118,7 @@ body {
     display: block;
     /*height: 15px;*/
     padding: 7px 8px;
-    color: #black;
+    color: black;
     text-decoration: none;
     border: none;
 }

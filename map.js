@@ -60,13 +60,13 @@ function initialize() {
         icon: logoImage
     });
 
-    console.log("init done");
+    //console.log("init done");
 }
 
 function markersForPlaces(map, symbol, infowindow, places) {
     for (var num in places) {
         var info = places[num];
-        console.log(num, info);
+        //console.log(num, info);
         //var geopos = info[0];
         //var geopos = [65.01424953761347, 25.47029972076416]
         var name = info[0];
@@ -117,7 +117,7 @@ function addHandler(map, marker, infowindow, text) {
     google.maps.event.addListener(marker, 'click', function() {
         infowindow.content = text;
         infowindow.open(map, marker);
-        console.log("onclick", marker.title);
+        //console.log("onclick", marker.title);
     });    
 }
 
@@ -158,7 +158,7 @@ $(document).ready(
       }
     );
 
-    $('#navigation').on('click', function() {
+    $('#navigation').on('click', function(event) {
         var t = event.target.id;
         var m = markers[t];
         if (m) {
@@ -167,5 +167,5 @@ $(document).ready(
             $(submenu).fadeOut();
         }
     });
-  }
+}
 );
