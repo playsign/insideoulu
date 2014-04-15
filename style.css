@@ -32,6 +32,10 @@ body {
     background-color: #f3f4f4;
 }
 
+.playsign {
+    height: 36px;
+}
+
 .top {
     position: absolute;
     top: 0px;
