@@ -72,7 +72,6 @@ function markersForPlaces(map, symbol, infowindow, places) {
         var name = info[0];
         var addr = info[1];
         var desc = info[2];
-        var text = "<b>" + name + "</b>" + " " + desc;
         
         var linkdata = info[3];
         var links = linkdata.split(',');
@@ -103,10 +102,16 @@ function markersForPlaces(map, symbol, infowindow, places) {
             labelClass: "labels", // the CSS class for the label
             labelStyle: {
                 opacity: 0.75,
-//                color: white
             },
             icon : symbol
         });
+
+        //conf the text for display
+        //remove multiple-at-same-location hack
+        if (addr.lastIndexOf('Pakkahuoneenkatu 5') > -1) {
+            addr = addr.substring(0, 18);
+        }
+        var text = "<strong>" + name + "</strong> <em>" + addr + "</em> / " + desc;
         
         addHandler(map, marker, infowindow, text);
         markers[num] = marker;
@@ -146,7 +151,6 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
 /*  jQuery ready function. Specify a function to execute when the DOM is fully loaded.  */
 $(document).ready(
-  /* This is the function that will get executed after the DOM is fully loaded */
   function () {
     /* Next part of code handles hovering effect and submenu appearing */
     $('.nav li').hover(
