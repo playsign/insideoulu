@@ -1,6 +1,6 @@
 var map, infowindow; //to expose for console debugging / devving
 
-var markercols = ['fb177f', '1450fb', 'ec7c22', '#1AA07E'];
+var markercols = ['#fb177f', '#1450fb', '#ec7c22', '#1AA07E'];
 var markers = []; //so that menu can open a marker
 
 function initialize() {
