@@ -41,7 +41,25 @@ function initialize() {
         markersForPlaces(map, circleSymbol, infowindow, allplaces[i]);
         populateMenus(i+1, allplaces[i]);
     }
-    
+
+    var logoPos = new google.maps.LatLng(65.016793, 
+                                         25.4625477);
+    var logoImage = {
+        url: 'logos/InsideOulu-logo.png',
+        // This marker is 20 pixels wide by 32 pixels tall.
+        size: new google.maps.Size(396, 213),
+        scaledSize: new google.maps.Size(79, 42),
+        // The origin for this image is 0,0.
+        origin: new google.maps.Point(0,0),
+        // The anchor for this image is the base of the flagpole at 0,32.
+        anchor: new google.maps.Point(38, 32)
+    };
+    var logoMarker = new google.maps.Marker({
+        position: logoPos,
+        map: map,
+        icon: logoImage
+    });
+
     console.log("init done");
 }
 

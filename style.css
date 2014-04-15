@@ -11,6 +11,16 @@ body {
   font-size: small;
 }
 
+.bottom {
+    position: absolute;
+    bottom: 0px;
+    left: 90px;
+}
+
+.popa {
+    width: 70px;
+}
+
 .top {
     position: absolute;
     top: 0px;
