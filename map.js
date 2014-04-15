@@ -1,6 +1,6 @@
 var map, infowindow; //to expose for console debugging / devving
 
-var markercols = ['fb177f', 'lightblue', 'ec7c22', '#21c89e'];
+var markercols = ['fb177f', '1450fb', 'ec7c22', '#1AA07E'];
 var markers = []; //so that menu can open a marker
 
 function initialize() {
@@ -101,7 +101,10 @@ function markersForPlaces(map, symbol, infowindow, places) {
             labelContent: num,
             labelAnchor: anchor,
             labelClass: "labels", // the CSS class for the label
-            labelStyle: {opacity: 0.75},
+            labelStyle: {
+                opacity: 0.75,
+//                color: white
+            },
             icon : symbol
         });
         

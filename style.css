@@ -4,6 +4,12 @@
     left: 0px;
 }
 
+.labels {
+     color: white;
+     text-align: center;
+     white-space: nowrap;
+}
+
 body {
   color: black;
   text-align:center;
@@ -19,6 +25,15 @@ body {
 
 .popa {
     width: 70px;
+}
+
+.finaviabox {
+    background-color: black;
+}
+
+.finavia {
+    height: 36px;
+    background-color: #f3f4f4;
 }
 
 .top {
@@ -49,7 +64,6 @@ body {
     display: block;
     padding: 7px 8px;
     text-decoration: none;
-    border-top: 1px solid #069;
 }
 
 /*.nav li a:hover {
@@ -69,7 +83,7 @@ body {
 }
 
 .nav .galleries {
-    color: #21c89e;
+    color: #1AA07E;
 }
 
 
@@ -88,13 +102,29 @@ body {
     float: left;
 }
 
+.boutiques li {
+    border-top: 1px solid #fb177f;
+}
+
+.restaurants li {
+    border-top: 1px solid #1450fb;
+}
+
+.bars li {
+    border-top: 1px solid #ec7c22;
+}
+
+.galleries li {
+    border-top: 1px solid #1AA07E;
+}
+
 .nav ul a {
     display: block;
     /*height: 15px;*/
     padding: 7px 8px;
     color: #black;
     text-decoration: none;
-    border-bottom: 1px solid #222;
+    border: none;
 }
 
 .nav ul li a:hover {
