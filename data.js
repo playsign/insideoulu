@@ -107,7 +107,7 @@ restaurants_cafes = {
 
     "18": ["Kakkukahvila Mira PoPpins",
            "Hallituskatu 21",
-           "Mon-Fri 7:30-17, Sat  8:30-15", 
+           "Mon-Fri 7:30-17, Sat 8:30-15", 
            "In our homely café we serve fabulous cakes, fresh-roasted Kaffa Roastery coffee, nutritious breakfast and a yummy lunch – always with a smile!",
           "www.kakkukahvilamirapoppins.com"],
 
