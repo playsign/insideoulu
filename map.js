@@ -71,8 +71,9 @@ function markersForPlaces(map, symbol, infowindow, places) {
         //var geopos = [65.01424953761347, 25.47029972076416]
         var name = info[0];
         var addr = info[1];
-        var desc = info[2];        
-        var linkdata = info[3];
+        var open = info[2];
+        var desc = info[3];        
+        var linkdata = info[4];
 
         var geopos = addr2geoloc[addr];
         var latlng = new google.maps.LatLng(geopos[0],
@@ -104,9 +105,12 @@ function markersForPlaces(map, symbol, infowindow, places) {
         if (addr.lastIndexOf('Pakkahuoneenkatu 5') > -1) {
             addr = addr.substring(0, 18);
         }
-        var text = "<strong>" + name + "</strong> <em>" + addr + "</em> / " + desc;
+        var text = 
+            "<strong>" + name + "</strong><br/>" 
+            + addr + "<br/>"
+            + "<em>" + open + "</em><br/>" 
+            + "<p>" + desc + "</p>";
         var links = linkdata.split(',');
-        text += "<br/>";
         for (var i=0; i < links.length; ++i) {
             var url = links[i].trim();         
             text += '<a href="http://' + url + '">' + url + '</a> ';
