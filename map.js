@@ -46,19 +46,15 @@ function initialize() {
                                          25.4625477);
     var logoImage = {
         url: 'logos/InsideOulu-logo.png',
-        // This marker is 20 pixels wide by 32 pixels tall.
-        size: new google.maps.Size(396, 213),
         scaledSize: new google.maps.Size(79, 42),
-        // The origin for this image is 0,0.
-        origin: new google.maps.Point(0,0),
-        // The anchor for this image is the base of the flagpole at 0,32.
-        anchor: new google.maps.Point(38, 32)
     };
     var logoMarker = new google.maps.Marker({
         position: logoPos,
         map: map,
         icon: logoImage
     });
+    addHandler(map, logoMarker, infowindow, abouttext);
+    markers['about'] = logoMarker;
 
     //console.log("init done");
 }
@@ -67,8 +63,6 @@ function markersForPlaces(map, symbol, infowindow, places) {
     for (var num in places) {
         var info = places[num];
         //console.log(num, info);
-        //var geopos = info[0];
-        //var geopos = [65.01424953761347, 25.47029972076416]
         var name = info[0];
         var addr = info[1];
         var open = info[2];
@@ -169,10 +163,15 @@ $(document).ready(
         var t = event.target.id;
         var m = markers[t];
         if (m) {
-            google.maps.event.trigger(markers[t], 'click');
+            google.maps.event.trigger(m, 'click');
             var submenu = event.target.parentElement.parentElement.parentElement;
             $(submenu).fadeOut();
         }
     });
 }
 );
+
+function about() {
+    var m = markers['about'];
+    google.maps.event.trigger(m, 'click');
+}

@@ -178,3 +178,5 @@ galleries = {
 }
 
 allplaces = [boutiques, restaurants_cafes, bars_nightclubs, galleries];
+
+abouttext = '<strong>InsideOulu</strong><p>Produced by Katja Iljana & Tiina Meriläinen. Web version powered by <a target="_blank" href="http://www.playsign.net/">Playsign</a>.</p><p><a target="_blank" href="https://www.facebook.com/InsideOulu">Facebook: InsideOulu</a><br/><a href="mailto:info@insideoulu.com">info@insideoulu.com</a></p>';
