@@ -135,7 +135,7 @@ function populateMenus(idx, places) {
     for (var num in places) {
         var info = places[num];
         var name = info[0];
-        $('<li>').html('<a href="#" id="' + num + '">' + name + '</a>').appendTo(menu);
+        $('<li>').html('<div style="float: left;"><a href="#" id="' + num + '">' + num + '.</div><div>' + name + '</div></a>').appendTo(menu);
         //list.appendTo(menu);
     }
 
@@ -170,7 +170,7 @@ $(document).ready(
         var m = markers[t];
         if (m) {
             google.maps.event.trigger(markers[t], 'click');
-            var submenu = event.target.parentElement.parentElement;
+            var submenu = event.target.parentElement.parentElement.parentElement;
             $(submenu).fadeOut();
         }
     });

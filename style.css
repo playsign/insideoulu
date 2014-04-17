@@ -12,7 +12,6 @@
 
 body {
   color: black;
-  text-align:center;
   font-family: arial;
   font-size: small;
 }
@@ -50,6 +49,7 @@ body {
     margin: 0px;
     padding: 0px;
     list-style: none;
+    text-align: center;
 }
 
 .nav li {
@@ -104,18 +104,22 @@ body {
 
 .boutiques li {
     border-top: 1px solid #fb177f;
+    text-align: left;
 }
 
 .restaurants li {
     border-top: 1px solid #1450fb;
+    text-align: left;
 }
 
 .bars li {
     border-top: 1px solid #ec7c22;
+    text-align: left;
 }
 
 .galleries li {
     border-top: 1px solid #1AA07E;
+    text-align: left;
 }
 
 .nav ul a {
