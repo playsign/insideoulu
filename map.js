@@ -113,7 +113,7 @@ function markersForPlaces(map, symbol, infowindow, places) {
         var links = linkdata.split(',');
         for (var i=0; i < links.length; ++i) {
             var url = links[i].trim();         
-            text += '<a href="http://' + url + '">' + url + '</a> ';
+            text += '<a target="_blank" href="http://' + url + '">' + url + '</a> ';
         }
         
         addHandler(map, marker, infowindow, text);
