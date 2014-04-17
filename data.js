@@ -178,3 +178,5 @@ galleries = {
 }
 
 allplaces = [boutiques, restaurants_cafes, bars_nightclubs, galleries];
+
+abouttext = "<h2>InsideOulu</h2> <p>lorem ipsum sumus omnes</p> powered by Playsign contact: info@insideoulu.com";

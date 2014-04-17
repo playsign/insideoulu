@@ -59,6 +59,7 @@ function initialize() {
         map: map,
         icon: logoImage
     });
+    addHandler(map, logoMarker, infowindow, abouttext);
 
     //console.log("init done");
 }
