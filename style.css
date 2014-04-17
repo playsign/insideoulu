@@ -11,10 +11,14 @@
 }
 
 body {
-  color: black;
-  font-family: arial;
-  font-size: small;
-  text-align: center;
+    color: black;
+    font-family: arial;
+    font-size: small;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
 }
 
 .bottom {
@@ -84,6 +88,19 @@ body {
 
 .nav .galleries {
     color: #1AA07E;
+}
+
+.nav .about a {
+    width: 25px;
+    height: 29px;
+    margin: 0px;
+    padding: 0px 0px;
+}
+
+.nav .about img {
+    width: 21px;
+    height: 22px;
+    padding: 3px; 3px;
 }
 
 
