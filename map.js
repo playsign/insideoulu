@@ -85,7 +85,7 @@ function markersForPlaces(map, symbol, infowindow, places) {
             draggable: false,
             raiseOnDrag: false,
             map: map,
-            labelContent: num,
+            labelContent: '<div title="' + name + '">' + num + '</div>',
             labelAnchor: anchor,
             labelClass: "labels", // the CSS class for the label
             labelStyle: {
