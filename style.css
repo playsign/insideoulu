@@ -58,7 +58,6 @@ a {
 
 .nav li {
     float: left;
-    width: 160px;
     position: relative;
 }
 
@@ -66,7 +65,7 @@ a {
     background: white;
     color: black;
     display: block;
-    padding: 7px 8px;
+    padding: 5px 6px;
     text-decoration: none;
 }
 
@@ -92,7 +91,7 @@ a {
 
 .nav .about a {
     width: 25px;
-    height: 29px;
+    height: 25px;
     margin: 0px;
     padding: 0px 0px;
 }
@@ -100,7 +99,7 @@ a {
 .nav .about img {
     width: 21px;
     height: 22px;
-    padding: 3px; 3px;
+    padding: 1px; 1px;
 }
 
 
