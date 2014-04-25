@@ -132,43 +132,55 @@ function populateMenus(idx, places) {
         $('<li>').html('<div style="float: left;"><a href="#" id="' + num + '">' + num + '.</div><div>' + name + '</div></a>').appendTo(menu);
         //list.appendTo(menu);
     }
-
-    /* Next part of code handles hovering effect and submenu appearing */
-    $('.nav li').hover(
-      function () { //appearing on hover
-        $('ul', this).fadeIn();
-      },
-      function () { //disappearing on hover
-        $('ul', this).fadeOut();
-      }
-    );
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
 
 /*  jQuery ready function. Specify a function to execute when the DOM is fully loaded.  */
 $(document).ready(
-  function () {
-    /* Next part of code handles hovering effect and submenu appearing */
-    $('.nav li').hover(
-      function () { //appearing on hover
-        $('ul', this).fadeIn();
-      },
-      function () { //disappearing on hover
-        $('ul', this).fadeOut();
-      }
-    );
+    function () {
+        /* Next part of code handles hovering effect and submenu appearing */
+        $('.nav li').hover(
+            function () { //appearing on hover (or after touch)              
+                //narrow screen (phone) support:
+                if (this.offsetTop == 0) { //is in top bar - may need to lower
+                    //check if menu has wrapped:
+                    var wrapped = false;
+                    $(".category").each(function(idx, menutitle) { 
+                        if (menutitle.offsetTop > 0) {
+                            wrapped = true;
+                        }
+                    });
+                    if (wrapped) {
+                        var cat = $(event.target).parent(".category");
+                        cat = cat.detach();
+                        $('#nav').append(cat);
+                    }
+                }
+                $('ul', this).fadeIn();
+            },
+            function () { //disappearing on hover
+                $('ul', this).fadeOut();
+            }
+        );
 
-    $('#navigation').on('click', function(event) {
-        var t = event.target.id;
-        var m = markers[t];
-        if (m) {
-            google.maps.event.trigger(m, 'click');
-            var submenu = event.target.parentElement.parentElement.parentElement;
-            $(submenu).fadeOut();
-        }
-    });
-}
+/* now relies on emulated hover from touch - would be faster with tap handling (if / when the artificial 300ms delay for touch-clicks is in play)
+        $('.nav li').tap(
+            function (event) { //for touch screens (no hover, except from touch)
+            }
+        );
+*/
+
+        $('#navigation').on('click', function(event) {
+            var t = event.target.id;
+            var m = markers[t];
+            if (m) {
+                google.maps.event.trigger(m, 'click');
+                var submenu = event.target.parentElement.parentElement.parentElement; //failed attempt to make nicer -- didn't debug as the old way is faster and reliable here anyway: $(event.target).parent(".menu");
+                $(submenu).fadeOut();
+            }
+        });
+    }
 );
 
 function about() {
