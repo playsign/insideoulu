@@ -141,8 +141,8 @@ function extractOukaAddrs(streetDocs) {
             if (groups == null)
                 continue;            
             var addr = groups[1] + groups[2] + groups[3] + groups[4];
-            if (addr == "Torikatu 10")
-                continue;
+            // if (addr == "Torikatu 10")
+            //     continue;
             var m = /^(.*)/.exec(val);
             var context = textContextForSubstring(addr, val);
             link=docurl;
