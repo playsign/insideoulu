@@ -1,3 +1,172 @@
+var oukaData = null;
+
+function loadOukaData() {
+    // callback chain:
+    // map.js toplevel onload -> here -> refineData (here in data.js) -> initializeOuluMap (back in map.js)
+    var req  = new XMLHttpRequest;
+    var startTime;
+    req.open('GET', 'oukaparse-output.json', true);
+    req.onreadystatechange = function (aEvt) {
+        if (req.readyState == 4) {
+            if (req.status == 200 || req.status == 0) {
+                oukaData = JSON.parse(req.responseText);
+                console.log("data load finished, elapsed=" + (performance.now() - startTime));
+                refineData();
+            }
+            else
+                console.log("err or", aEvt);
+        }
+    };
+    req.send(null);
+    startTime = performance.now();
+}
+
+function oukaMap(fun) {
+    var out = [];
+    for (var key in oukaData) {
+        if (oukaData.hasOwnProperty(key)) {
+            var ret = fun(oukaData[key], key)
+            if (ret !== null)
+                out.push(ret);
+        }
+    }
+    return out;
+};
+
+// function oukaMultiMap() {
+//     var out = [];
+//     for (var key in oukaData) {
+//         if (oukaData.hasOwnProperty(key)) {
+//             var pass = true;
+//             for (var i = 0; fun = arguments[i]; i++) {
+//                 var ret = fun(oukaData[key])
+//                 if (ret == null) {
+//                     pass = false;
+//                     break;
+//                 }
+//             }
+//             if (pass == true)
+//                 out.push(ret);
+//         }
+//     }
+//     return out;
+// };
+
+function dgrep (doc, re) {
+    for (var key in doc) {
+        if (doc.hasOwnProperty(key) && doc[key].search(re))
+            return key;
+    }
+    return false;
+};
+
+function grepper(re, section) {
+    return function (doc, topkey) {
+        for (var key in doc) {
+            var val = doc[key];
+            if (section && section !== key)
+                continue;
+            if (doc.hasOwnProperty(key) && (typeof(val) == 'string') && doc[key].search(re) !== -1)
+                return [key, doc, topkey];
+        };
+        return null;
+    }
+}
+
+function refineData() {
+    //var aska = oukaMap(function(d) { if ((d[""] || "").search(/Asemakaavan/) !== -1) return null; else return d} );
+    // var aska = oukaMap(grepper(/Asemakaava/i, ""));
+    // var bo = oukaMap(grepper(/BusinessOulu/i));
+    // var ov = oukaMap(grepper(/oikaisuvaatimus/i));
+    var street = oukaMap(grepper(/(kuja|katu|tie|polku|väylä)\s+\d/i, ""));
+ //   var other = oukaMap(function(d) 
+    //console.log("counts", aska.length, bo.length, ov.length);
+    console.log("street #", street.length);
+    //console.log(street[41]);
+    //var places = extractOukaAddrs(street);
+    
+    //allplaces.push(places);
+    
+    allplaces.push(extractOukaAddrs(oukaMap(grepper(/oikaisuvaatimus/i))));
+    allplaces.push(extractOukaAddrs(oukaMap(grepper(/tonttijaon muutos/i))));
+    allplaces.push(extractOukaAddrs(oukaMap(grepper(/maankäyttösop/i))));
+    allplaces.push(extractOukaAddrs(oukaMap(grepper(/rakennuslupa/i))));
+    
+    initializeOuluMap();
+}
+
+function max(a, b) {
+    return (a > b) ? a : b;
+}
+function min(a, b) {
+    return (a > b) ? b : a;
+}
+
+function nextSpaceOffsetInString(s, startOffset, searchDirection) {
+    
+    for (var i = startOffset + searchDirection; /\s/.test(s[i]) == false && s[i] !== undefined; i += searchDirection) {
+        ;
+    }
+    return i;
+}
+
+// function nextSentenceEndOffsetInString(s, startOffset, searchDirection) {
+    
+//     for (var i = startOffset + searchDirection; /[\.]/.test(s[i]) == false && s[i] !== undefined; i += searchDirection) {
+//         ;
+//     }
+//     return i;
+// }
+
+function textContextForSubstring(needle, haystack) {
+    var contextLength = 12; // minimum chars of context to get (until next space)
+    var nOffset = haystack.indexOf(needle);
+    var backwardsContextStart = nextSpaceOffsetInString(haystack, nOffset - contextLength, -1)
+    var forwardContextEnd = nextSpaceOffsetInString(haystack, nOffset + needle.length + contextLength, 1);
+    return haystack.slice(backwardsContextStart, forwardContextEnd);
+}
+
+function extractOukaAddrs(streetDocs) {
+    var out = new Object;
+    var hits = 0;
+    for (var i = 0; i < streetDocs.length; i++) {
+        var doc = streetDocs[i][1];
+        var docurl = streetDocs[i][2].slice(4);
+        for (var key in doc) {
+            if (!doc.hasOwnProperty(key))
+                continue;
+            var val = doc[key];
+            var groups = /(\w+)(kuja|katu|tie|polku|väylä)(\s+)(\d[\d\w-]*)/i.exec(val);
+            // groups: 1) start of streetword 2) end of streetword 3) spaces 4) street nr
+            if (groups == null)
+                continue;            
+            var addr = groups[1] + groups[2] + groups[3] + groups[4];
+            if (addr == "Torikatu 10")
+                continue;
+            var m = /^(.*)/.exec(val);
+            var context = textContextForSubstring(addr, val);
+            link=docurl;
+            var title, context, link;
+            if (m)
+                title = m[1];
+            else
+                m = "(ei otsikkoa)";
+            if (title.length > 30)
+                title = title.substring(0, nextSpaceOffsetInString(title, 60, 1)) + "[...]"
+            out["" + (50 + hits)] = [title, addr, context, link];
+            //out[addr] = doc;
+            hits++;
+        }
+        if (hits > 30)
+            break;
+
+    }
+    console.log("extracted # addresses: " + hits);
+    console.log(JSON.stringify(out));
+    return out;
+}
+
+
 boutiques = {
     "1": ["Non Boutique",
           "Pakkahuoneenkatu 5a",
@@ -149,4 +318,4 @@ galleries = {
           "www.kulttuuribingo.fi"]
 }
 
-allplaces = [boutiques, restaurants_cafes, bars_nightclubs, galleries];
+allplaces = [/*boutiques, restaurants_cafes, bars_nightclubs, galleries */];
