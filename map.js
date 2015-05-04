@@ -42,6 +42,7 @@ function initializeOuluMap() {
         populateMenus(i+1, allplaces[i]);
     }
 
+    /*
     var logoPos = new google.maps.LatLng(65.016793, 
                                          25.4625477);
     var logoImage = {
@@ -58,7 +59,7 @@ function initializeOuluMap() {
         position: logoPos,
         map: map,
         icon: logoImage
-    });
+    });*/
 
     //console.log("init done");
 }
