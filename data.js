@@ -152,7 +152,7 @@ function extractOukaAddrs(streetDocs) {
             else
                 m = "(ei otsikkoa)";
             if (title.length > 30)
-                title = title.substring(0, nextSpaceOffsetInString(title, 60, 1)) + "[...]"
+                title = title.substring(0, nextSpaceOffsetInString(title, 300, 1)) + "[...]"
             out["" + (50 + hits)] = [title, addr, context, link];
             //out[addr] = doc;
             hits++;
