@@ -3,6 +3,7 @@ var map, activeInfoWindow; //to expose for console debugging / devving
 var markercols = ['#fb177f', '#1450fb', '#ec7c22', '#1AA07E'];
 var markers = []; //so that menu can open a marker
 var markercluster;
+var oms;
 
 function initializeOuluMap() {
     var myStyles = [{
@@ -29,7 +30,8 @@ function initializeOuluMap() {
         maxWidth: 200
     });
     activeInfoWindow = infowindow;
-    markercluster = new MarkerClusterer(map);
+    //markercluster = new MarkerClusterer(map);
+    //oms = new OverlappingMarkerSpiderfier(map);
     for (var i=0; i < allplaces.length; ++i) {
         var color = markercols[i];
         var circleSymbol = {
@@ -146,7 +148,10 @@ function markersForPlaces(map, symbol, infowindow, places) {
             
             addHandler(map, marker, infowindow, text);
             markers[num] = marker;
-            markercluster.addMarker(marker);
+            if (markercluster)
+                markercluster.addMarker(marker);
+            if (oms)
+                oms.addMarker(marker);
             console.log("markers " + num + " set to " + text);
         });
     }
@@ -161,6 +166,8 @@ function markersForPlaces(map, symbol, infowindow, places) {
 // }
 
 function addHandler(map, marker, infowindow, text) {
+    //oms.addListener(marker, 'click', function() {
+    //    console.log("oms click");
     google.maps.event.addListener(marker, 'click', function() {
         //Close active window if exists
         if(activeInfoWindow) {
@@ -174,6 +181,7 @@ function addHandler(map, marker, infowindow, text) {
 
         // Open InfoWindow
         activeInfoWindow.open(map, marker);
+        console.log("clicked->open iw");
     });    
 }
 
