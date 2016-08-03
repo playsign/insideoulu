@@ -117,9 +117,9 @@ function markersForPlaces(map, symbol, infowindow, places) {
 
 function addHandler(map, marker, infowindow, text) {
     google.maps.event.addListener(marker, 'click', function() {
-        infowindow.content = text;
+        infowindow.setContent(text);
         infowindow.open(map, marker);
-        //console.log("onclick", marker.title);
+        //console.log("onclick", marker.title, text, infowindow);
     });    
 }
 
