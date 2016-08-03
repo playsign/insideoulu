@@ -46,19 +46,15 @@ function initialize() {
                                          25.4625477);
     var logoImage = {
         url: 'logos/InsideOulu-logo.png',
-        // This marker is 20 pixels wide by 32 pixels tall.
-        size: new google.maps.Size(396, 213),
         scaledSize: new google.maps.Size(79, 42),
-        // The origin for this image is 0,0.
-        origin: new google.maps.Point(0,0),
-        // The anchor for this image is the base of the flagpole at 0,32.
-        anchor: new google.maps.Point(38, 32)
     };
     var logoMarker = new google.maps.Marker({
         position: logoPos,
         map: map,
         icon: logoImage
     });
+    addHandler(map, logoMarker, infowindow, abouttext);
+    markers['about'] = logoMarker;
 
     //console.log("init done");
 }
@@ -67,12 +63,11 @@ function markersForPlaces(map, symbol, infowindow, places) {
     for (var num in places) {
         var info = places[num];
         //console.log(num, info);
-        //var geopos = info[0];
-        //var geopos = [65.01424953761347, 25.47029972076416]
         var name = info[0];
         var addr = info[1];
-        var desc = info[2];        
-        var linkdata = info[3];
+        var open = info[2];
+        var desc = info[3];        
+        var linkdata = info[4];
 
         var geopos = addr2geoloc[addr];
         var latlng = new google.maps.LatLng(geopos[0],
@@ -90,7 +85,7 @@ function markersForPlaces(map, symbol, infowindow, places) {
             draggable: false,
             raiseOnDrag: false,
             map: map,
-            labelContent: num,
+            labelContent: '<div title="' + name + '">' + num + '</div>',
             labelAnchor: anchor,
             labelClass: "labels", // the CSS class for the label
             labelStyle: {
@@ -104,12 +99,15 @@ function markersForPlaces(map, symbol, infowindow, places) {
         if (addr.lastIndexOf('Pakkahuoneenkatu 5') > -1) {
             addr = addr.substring(0, 18);
         }
-        var text = "<strong>" + name + "</strong> <em>" + addr + "</em> / " + desc;
+        var text = 
+            "<strong>" + name + "</strong><br/>" 
+            + addr + "<br/>"
+            + "<em>" + open + "</em><br/>" 
+            + "<p>" + desc + "</p>";
         var links = linkdata.split(',');
-        text += "<br/>";
         for (var i=0; i < links.length; ++i) {
             var url = links[i].trim();         
-            text += '<a href="http://' + url + '">' + url + '</a> ';
+            text += '<a target="_blank" href="http://' + url + '">' + url + '</a> ';
         }
         
         addHandler(map, marker, infowindow, text);
@@ -119,9 +117,9 @@ function markersForPlaces(map, symbol, infowindow, places) {
 
 function addHandler(map, marker, infowindow, text) {
     google.maps.event.addListener(marker, 'click', function() {
-        infowindow.content = text;
+        infowindow.setContent(text);
         infowindow.open(map, marker);
-        //console.log("onclick", marker.title);
+        //console.log("onclick", marker.title, text, infowindow);
     });    
 }
 
@@ -131,44 +129,61 @@ function populateMenus(idx, places) {
     for (var num in places) {
         var info = places[num];
         var name = info[0];
-        $('<li>').html('<a href="#" id="' + num + '">' + name + '</a>').appendTo(menu);
+        $('<li>').html('<div style="float: left;"><a href="#" id="' + num + '">' + num + '.</div><div>' + name + '</div></a>').appendTo(menu);
         //list.appendTo(menu);
     }
-
-    /* Next part of code handles hovering effect and submenu appearing */
-    $('.nav li').hover(
-      function () { //appearing on hover
-        $('ul', this).fadeIn();
-      },
-      function () { //disappearing on hover
-        $('ul', this).fadeOut();
-      }
-    );
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
 
 /*  jQuery ready function. Specify a function to execute when the DOM is fully loaded.  */
 $(document).ready(
-  function () {
-    /* Next part of code handles hovering effect and submenu appearing */
-    $('.nav li').hover(
-      function () { //appearing on hover
-        $('ul', this).fadeIn();
-      },
-      function () { //disappearing on hover
-        $('ul', this).fadeOut();
-      }
-    );
+    function () {
+        /* Next part of code handles hovering effect and submenu appearing */
+        $('.nav li').hover(
+            function () { //appearing on hover (or after touch)              
+                //narrow screen (phone) support:
+                if (this.offsetTop == 0) { //is in top bar - may need to lower
+                    //check if menu has wrapped:
+                    var wrapped = false;
+                    $(".category").each(function(idx, menutitle) { 
+                        if (menutitle.offsetTop > 0) {
+                            wrapped = true;
+                        }
+                    });
+                    if (wrapped) {
+                        var cat = $(event.target).parent(".category");
+                        cat = cat.detach();
+                        $('#nav').append(cat);
+                    }
+                }
+                $('ul', this).fadeIn();
+            },
+            function () { //disappearing on hover
+                $('ul', this).fadeOut();
+            }
+        );
 
-    $('#navigation').on('click', function(event) {
-        var t = event.target.id;
-        var m = markers[t];
-        if (m) {
-            google.maps.event.trigger(markers[t], 'click');
-            var submenu = event.target.parentElement.parentElement;
-            $(submenu).fadeOut();
-        }
-    });
-}
+/* now relies on emulated hover from touch - would be faster with tap handling (if / when the artificial 300ms delay for touch-clicks is in play)
+        $('.nav li').tap(
+            function (event) { //for touch screens (no hover, except from touch)
+            }
+        );
+*/
+
+        $('#navigation').on('click', function(event) {
+            var t = event.target.id;
+            var m = markers[t];
+            if (m) {
+                google.maps.event.trigger(m, 'click');
+                var submenu = event.target.parentElement.parentElement.parentElement; //failed attempt to make nicer -- didn't debug as the old way is faster and reliable here anyway: $(event.target).parent(".menu");
+                $(submenu).fadeOut();
+            }
+        });
+    }
 );
+
+function about() {
+    var m = markers['about'];
+    google.maps.event.trigger(m, 'click');
+}

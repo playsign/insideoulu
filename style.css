@@ -11,10 +11,14 @@
 }
 
 body {
-  color: black;
-  text-align:center;
-  font-family: arial;
-  font-size: small;
+    color: black;
+    font-family: arial;
+    font-size: small;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
 }
 
 .bottom {
@@ -39,7 +43,7 @@ body {
 .top {
     position: absolute;
     top: 0px;
-    left: 90px;
+    left: 10%;
 }
 
 .navigation {
@@ -54,7 +58,6 @@ body {
 
 .nav li {
     float: left;
-    width: 160px;
     position: relative;
 }
 
@@ -62,7 +65,7 @@ body {
     background: white;
     color: black;
     display: block;
-    padding: 7px 8px;
+    padding: 5px 6px;
     text-decoration: none;
 }
 
@@ -86,6 +89,19 @@ body {
     color: #1AA07E;
 }
 
+.nav .about a {
+    width: 25px;
+    height: 25px;
+    margin: 0px;
+    padding: 0px 0px;
+}
+
+.nav .about img {
+    width: 21px;
+    height: 22px;
+    padding: 1px; 1px;
+}
+
 
 /*=== submenu ===*/
 
@@ -104,18 +120,22 @@ body {
 
 .boutiques li {
     border-top: 1px solid #fb177f;
+    text-align: left;
 }
 
 .restaurants li {
     border-top: 1px solid #1450fb;
+    text-align: left;
 }
 
 .bars li {
     border-top: 1px solid #ec7c22;
+    text-align: left;
 }
 
 .galleries li {
     border-top: 1px solid #1AA07E;
+    text-align: left;
 }
 
 .nav ul a {
